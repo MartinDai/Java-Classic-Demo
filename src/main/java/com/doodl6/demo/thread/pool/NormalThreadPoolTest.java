@@ -38,5 +38,7 @@ public class NormalThreadPoolTest {
                 System.out.println(System.currentTimeMillis() + ":" + Thread.currentThread().getName() + "执行任务" + taskNo + "完成");
             });
         }
+
+        executorService.shutdown();
     }
 }

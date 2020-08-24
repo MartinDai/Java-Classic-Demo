@@ -26,5 +26,7 @@ public class SingleThreadPoolTest {
                 System.out.println(Thread.currentThread().getName() + "执行任务" + taskNo + "完成");
             });
         }
+
+        executorService.shutdown();
     }
 }
