@@ -53,5 +53,6 @@ public class JdkProxyTest {
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         IHello hello = (IHello) JdkProxy.getProxyInstance(new Hello());
         hello.sayHello();
+        System.out.println(hello.getClass().toString());
     }
 }
