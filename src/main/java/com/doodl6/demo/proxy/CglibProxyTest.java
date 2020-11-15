@@ -2,9 +2,6 @@ package com.doodl6.demo.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
-
-import java.lang.reflect.Method;
 
 /**
  * 基于cglib实现动态代理
@@ -18,7 +15,7 @@ public class CglibProxyTest {
         }
     }
 
-    public static void main(String[] args) throws Throwable {
+    public static void main(String[] args) {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(Hello.class);
         enhancer.setCallback((MethodInterceptor) (obj, method, args1, proxy) -> {
