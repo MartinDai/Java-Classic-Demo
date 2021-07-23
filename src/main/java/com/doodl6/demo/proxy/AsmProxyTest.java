@@ -4,8 +4,6 @@ package com.doodl6.demo.proxy;
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 
-import java.io.FileOutputStream;
-
 /**
  * 基于asm实现动态代理
  */
@@ -27,15 +25,15 @@ public class AsmProxyTest {
 
     public static class MyClassVisitor extends ClassVisitor {
 
-        public MyClassVisitor(int api, ClassVisitor classVisitor) {
-            super(api, classVisitor);
+        public MyClassVisitor(ClassVisitor classVisitor) {
+            super(Opcodes.ASM7, classVisitor);
         }
 
         @Override
         public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
             MethodVisitor methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
             if ("sayHello".equals(name)) {
-                return new MyAdviceAdapter(Opcodes.ASM5, methodVisitor, access, name, descriptor);
+                return new MyAdviceAdapter(Opcodes.ASM7, methodVisitor, access, name, descriptor);
             }
 
             return methodVisitor;
@@ -76,18 +74,16 @@ public class AsmProxyTest {
         ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
 
         //创建自定义ClassVisitor对象
-        ClassVisitor visitor = new MyClassVisitor(Opcodes.ASM5, classWriter);
+        ClassVisitor visitor = new MyClassVisitor(classWriter);
         classReader.accept(visitor, ClassReader.SKIP_FRAMES);
 
         //得到修改后的字节码数据
         byte[] byteArray = classWriter.toByteArray();
 
-        // 将修改后的字节码数据写入文件
-        try (FileOutputStream fos = new FileOutputStream("target/classes/com/doodl6/demo/proxy/AsmProxyTest$HelloAsmProxy.class")) {
-            fos.write(byteArray);
-        }
-
         Class<?> clazz = new GeneratorClassLoader().defineClass(Hello.class.getName(), byteArray);
+
+        // 将修改后的字节码数据写入文件
+        ClassUtil.saveClass(byteArray, clazz.getName());
         Object obj = clazz.newInstance();
         clazz.getMethod("sayHello").invoke(obj);
 

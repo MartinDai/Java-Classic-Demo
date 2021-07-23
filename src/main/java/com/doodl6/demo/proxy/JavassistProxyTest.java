@@ -86,7 +86,8 @@ public class JavassistProxyTest {
         }
 
         //把生成的class写入文件
-        proxyCtClass.writeFile("target/classes");
+        ClassUtil.saveClass(proxyCtClass.toBytecode(), proxyCtClass.getName());
+//        proxyCtClass.writeFile("target/classes");
 
         return (T) proxyCtClass.toClass().newInstance();
     }
