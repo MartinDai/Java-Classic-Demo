@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 /**
  * 基于byte-buddy实现动态代理
  */
-public class ByteBuddyProxyTest {
+public class ByteBuddyProxyDemo {
 
     public static class Hello {
 
@@ -30,7 +30,7 @@ public class ByteBuddyProxyTest {
                 .method(ElementMatchers.named("sayHello"))
                 .intercept(MethodDelegation.to(new HelloInterceptor()))
                 .make()
-                .load(ByteBuddyProxyTest.class.getClassLoader());
+                .load(ByteBuddyProxyDemo.class.getClassLoader());
         Hello proxy = loaded.getLoaded().getDeclaredConstructor().newInstance();
 
         //保存字节码文件

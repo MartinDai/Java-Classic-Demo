@@ -4,7 +4,7 @@ package com.doodl6.demo.jvm;
  * 模拟java.lang.StackOverflowError
  * 栈溢出
  */
-public class StackOverflow {
+public class StackOverflowDemo {
 
     private static int stackDepth = 0;
 

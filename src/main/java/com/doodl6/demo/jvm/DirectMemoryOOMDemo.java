@@ -8,7 +8,7 @@ import java.util.List;
  * 模拟java.lang.OutOfMemoryError: Direct buffer memory
  * 堆外内存溢出
  */
-public class DirectMemoryOOM {
+public class DirectMemoryOOMDemo {
 
     private static final int _1MB = 1024 * 1024;
 

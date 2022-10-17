@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 /**
  * 利用jdk自带的方式实现动态代理
  */
-public class JdkProxyTest {
+public class JdkProxyDemo {
 
     private interface IHello {
         void sayHello();

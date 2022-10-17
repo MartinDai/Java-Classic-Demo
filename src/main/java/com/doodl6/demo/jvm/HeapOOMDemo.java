@@ -7,7 +7,7 @@ import java.util.List;
  * 模拟java.lang.OutOfMemoryError: Heap space
  * 堆内存溢出
  */
-public class HeapOOM {
+public class HeapOOMDemo {
 
     /**
      * JVM参数：-Xms5m -Xmx5m -XX:+HeapDumpOnOutOfMemoryError

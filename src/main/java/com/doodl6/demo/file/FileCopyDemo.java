@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * 文件复制，多种方式实现
  */
-public class FileCopy {
+public class FileCopyDemo {
 
     public static void main(String[] args) throws IOException {
         //创建一个大的临时文件

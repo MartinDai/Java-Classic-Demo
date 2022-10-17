@@ -7,7 +7,7 @@ import org.objectweb.asm.commons.AdviceAdapter;
 /**
  * 基于asm实现动态代理
  */
-public class AsmProxyTest {
+public class AsmProxyDemo {
 
     public static class Hello {
 

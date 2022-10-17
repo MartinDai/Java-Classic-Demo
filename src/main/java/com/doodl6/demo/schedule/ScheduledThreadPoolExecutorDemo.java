@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.concurrent.*;
 
-public class ScheduledThreadPoolExecutorTest {
+public class ScheduledThreadPoolExecutorDemo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         long now = System.currentTimeMillis();

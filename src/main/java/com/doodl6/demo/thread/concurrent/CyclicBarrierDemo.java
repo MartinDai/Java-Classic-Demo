@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class CyclicBarrierTest {
+public class CyclicBarrierDemo {
 
     public static void main(String[] args) throws InterruptedException, BrokenBarrierException {
         //多线程执行任务，等待所有线程准备完成以后，再一起继续执行

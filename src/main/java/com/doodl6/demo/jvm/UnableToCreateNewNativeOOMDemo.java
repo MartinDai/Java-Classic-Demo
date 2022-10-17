@@ -4,7 +4,7 @@ package com.doodl6.demo.jvm;
  * 模拟java.lang.OutOfMemoryError: unable to create new native
  * 无法创建新线程导致内存溢出，不好复现，该程序会导致电脑卡顿，建议在容器中运行
  */
-public class UnableToCreateNewNativeOOM {
+public class UnableToCreateNewNativeOOMDemo {
 
     /**
      * JVM参数：-Xss256k -XX:+HeapDumpOnOutOfMemoryError

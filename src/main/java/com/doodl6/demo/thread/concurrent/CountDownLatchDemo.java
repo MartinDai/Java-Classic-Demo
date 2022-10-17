@@ -3,7 +3,7 @@ package com.doodl6.demo.thread.concurrent;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
-public class CountDownLatchTest {
+public class CountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
         //多线程执行任务，等待所有线程完成以后，再执行主线程

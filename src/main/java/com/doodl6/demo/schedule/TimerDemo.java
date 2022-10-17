@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TimerTest {
+public class TimerDemo {
 
     public static void main(String[] args) throws InterruptedException {
         long now = System.currentTimeMillis();

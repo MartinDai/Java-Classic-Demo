@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class NormalThreadPoolTest {
+public class NormalThreadPoolDemo {
 
     private static final AtomicInteger threadNum = new AtomicInteger(0);
 

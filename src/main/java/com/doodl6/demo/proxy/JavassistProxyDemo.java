@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * 基于javassist实现动态代理
  */
-public class JavassistProxyTest {
+public class JavassistProxyDemo {
 
     public static class Hello {
 

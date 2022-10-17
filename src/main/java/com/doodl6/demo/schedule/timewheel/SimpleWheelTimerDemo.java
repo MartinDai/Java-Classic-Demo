@@ -14,15 +14,15 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 /**
  * 简单版时间轮，核心代码来自于netty
  */
-public class SimpleWheelTimer {
+public class SimpleWheelTimerDemo {
 
     /**
      * 对字段做原子操作的修改类
      */
-    private static final AtomicIntegerFieldUpdater<SimpleWheelTimer> WORKER_STATE_UPDATER;
+    private static final AtomicIntegerFieldUpdater<SimpleWheelTimerDemo> WORKER_STATE_UPDATER;
 
     static {
-        WORKER_STATE_UPDATER = AtomicIntegerFieldUpdater.newUpdater(SimpleWheelTimer.class, "workerState");
+        WORKER_STATE_UPDATER = AtomicIntegerFieldUpdater.newUpdater(SimpleWheelTimerDemo.class, "workerState");
     }
 
     /**
@@ -52,7 +52,7 @@ public class SimpleWheelTimer {
 
     private final Queue<WheelTimeout> timeouts = new LinkedBlockingQueue<>();
 
-    public SimpleWheelTimer(ThreadFactory threadFactory, long tickDuration, TimeUnit unit, int ticksPerWheel) {
+    public SimpleWheelTimerDemo(ThreadFactory threadFactory, long tickDuration, TimeUnit unit, int ticksPerWheel) {
         if (threadFactory == null) {
             throw new NullPointerException("threadFactory");
         }
@@ -163,7 +163,7 @@ public class SimpleWheelTimer {
      */
     public Set<WheelTimeout> stop() {
         if (Thread.currentThread() == workerThread) {
-            throw new IllegalStateException(SimpleWheelTimer.class.getSimpleName() + ".stop() cannot be called from " + TimerTask.class.getSimpleName());
+            throw new IllegalStateException(SimpleWheelTimerDemo.class.getSimpleName() + ".stop() cannot be called from " + TimerTask.class.getSimpleName());
         }
 
         if (!WORKER_STATE_UPDATER.compareAndSet(this, WORKER_STATE_STARTED, WORKER_STATE_SHUTDOWN)) {
@@ -222,7 +222,7 @@ public class SimpleWheelTimer {
                     bucket.expireTimeouts(deadline);
                     tick++;
                 }
-            } while (WORKER_STATE_UPDATER.get(SimpleWheelTimer.this) == WORKER_STATE_STARTED);
+            } while (WORKER_STATE_UPDATER.get(SimpleWheelTimerDemo.this) == WORKER_STATE_STARTED);
 
             // worker停止以后，填充未处理的超时任务
             for (WheelBucket bucket : wheel) {
@@ -291,7 +291,7 @@ public class SimpleWheelTimer {
                     //休眠剩余的时间，如果被打断，则需要判断worker是不是已经停止了
                     Thread.sleep(sleepTimeMs);
                 } catch (InterruptedException ignored) {
-                    if (WORKER_STATE_UPDATER.get(SimpleWheelTimer.this) == WORKER_STATE_SHUTDOWN) {
+                    if (WORKER_STATE_UPDATER.get(SimpleWheelTimerDemo.this) == WORKER_STATE_SHUTDOWN) {
                         return Long.MIN_VALUE;
                     }
                 }
@@ -519,20 +519,20 @@ public class SimpleWheelTimer {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        SimpleWheelTimer simpleWheelTimer = new SimpleWheelTimer(r -> {
+        SimpleWheelTimerDemo simpleWheelTimerDemo = new SimpleWheelTimerDemo(r -> {
             Thread thread = new Thread(r);
             thread.setName("SimpleWheelTimer");
             return thread;
         }, 1, TimeUnit.MILLISECONDS, 128);
 
-        simpleWheelTimer.newTimeout(new MyTimerTask(), 5121, TimeUnit.MILLISECONDS);
-        simpleWheelTimer.newTimeout(new MyTimerTask(), 2444, TimeUnit.MILLISECONDS);
-        simpleWheelTimer.newTimeout(new MyTimerTask(), 1232, TimeUnit.MILLISECONDS);
-        simpleWheelTimer.newTimeout(new MyTimerTask(), 4222, TimeUnit.MILLISECONDS);
-        simpleWheelTimer.newTimeout(new MyTimerTask(), 3533, TimeUnit.MILLISECONDS);
+        simpleWheelTimerDemo.newTimeout(new MyTimerTask(), 5121, TimeUnit.MILLISECONDS);
+        simpleWheelTimerDemo.newTimeout(new MyTimerTask(), 2444, TimeUnit.MILLISECONDS);
+        simpleWheelTimerDemo.newTimeout(new MyTimerTask(), 1232, TimeUnit.MILLISECONDS);
+        simpleWheelTimerDemo.newTimeout(new MyTimerTask(), 4222, TimeUnit.MILLISECONDS);
+        simpleWheelTimerDemo.newTimeout(new MyTimerTask(), 3533, TimeUnit.MILLISECONDS);
 
         Thread.sleep(10000);
-        simpleWheelTimer.stop();
+        simpleWheelTimerDemo.stop();
     }
 }
 

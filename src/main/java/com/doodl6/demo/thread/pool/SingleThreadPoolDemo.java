@@ -2,22 +2,19 @@ package com.doodl6.demo.thread.pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class FixedThreadPoolTest {
-
-    private static final AtomicInteger threadNum = new AtomicInteger(0);
+public class SingleThreadPoolDemo {
 
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(2, r -> {
-            //会执行两次
+        ExecutorService executorService = Executors.newSingleThreadExecutor(r -> {
+            //只会执行一次这里的逻辑
             System.out.println("创建新线程");
             Thread thread = new Thread(r);
-            thread.setName("FixedThread-" + threadNum.incrementAndGet());
+            thread.setName("SingleThread");
             return thread;
         });
 
-        //输出10次的线程名字只有两种，说明只有两个线程执行任务
+        //输出10次的线程名字相同，说明只有一个线程执行任务
         for (int i = 0; i < 10; i++) {
             int taskNo = i;
             executorService.submit(() -> {

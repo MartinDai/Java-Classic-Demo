@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 /**
  * 基于cglib实现动态代理
  */
-public class CglibProxyTest {
+public class CglibProxyDemo {
 
     public static class Hello {
 

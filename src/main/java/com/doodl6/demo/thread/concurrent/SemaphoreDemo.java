@@ -3,7 +3,7 @@ package com.doodl6.demo.thread.concurrent;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
-public class SemaphoreTest {
+public class SemaphoreDemo {
 
     public static void main(String[] args) throws InterruptedException {
         //同一时间最多只允许2个线程执行

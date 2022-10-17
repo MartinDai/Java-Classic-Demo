@@ -2,26 +2,23 @@ package com.doodl6.demo.thread.pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class CachedThreadPoolTest {
+public class FixedThreadPoolDemo {
+
+    private static final AtomicInteger threadNum = new AtomicInteger(0);
 
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newCachedThreadPool(r -> {
-            //每次提交任务都会创建线程
+        ExecutorService executorService = Executors.newFixedThreadPool(2, r -> {
+            //会执行两次
             System.out.println("创建新线程");
             Thread thread = new Thread(r);
-            thread.setName("CachedThread-" + System.currentTimeMillis());
+            thread.setName("FixedThread-" + threadNum.incrementAndGet());
             return thread;
         });
 
-        //输出10次的线程名字都不相同，说明每个任务都有一个单独的线程执行
+        //输出10次的线程名字只有两种，说明只有两个线程执行任务
         for (int i = 0; i < 10; i++) {
-            try {
-                //为了模拟出不同的线程名称，每次提交都休眠1毫秒
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             int taskNo = i;
             executorService.submit(() -> {
                 try {

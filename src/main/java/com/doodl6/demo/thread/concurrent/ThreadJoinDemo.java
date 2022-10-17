@@ -1,6 +1,6 @@
 package com.doodl6.demo.thread.concurrent;
 
-public class ThreadJoinTest {
+public class ThreadJoinDemo {
 
     public static void main(String[] args) throws InterruptedException {
         //保证A,B,C三个线程顺序执行

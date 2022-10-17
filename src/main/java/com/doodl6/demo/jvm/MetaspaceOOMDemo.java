@@ -6,7 +6,7 @@ import net.sf.cglib.proxy.MethodInterceptor;
 /**
  * 模拟java.lang.OutOfMemoryError: Metaspace
  */
-public class MetaspaceOOM {
+public class MetaspaceOOMDemo {
 
     /**
      * JVM参数：-XX:MaxMetaspaceSize=10M -XX:+HeapDumpOnOutOfMemoryError
