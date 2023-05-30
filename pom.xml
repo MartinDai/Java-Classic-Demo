@@ -21,6 +21,7 @@
 
     <modules>
         <module>file</module>
+        <module>javaagent</module>
         <module>jvm</module>
         <module>pattern</module>
         <module>proxy</module>
