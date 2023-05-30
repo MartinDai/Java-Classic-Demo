@@ -1,4 +1,4 @@
-package com.doodl6.demo.jvm;
+package com.doodl6.demo.jvm.oom;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package com.doodl6.demo.jvm;
+package com.doodl6.demo.jvm.oom;
 
 import java.util.ArrayList;
 import java.util.List;

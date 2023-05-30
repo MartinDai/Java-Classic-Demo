@@ -1,4 +1,4 @@
-package com.doodl6.demo.jvm;
+package com.doodl6.demo.jvm.oom;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

@@ -1,51 +1,65 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.doodl6</groupId>
+    <groupId>com.doodl6.demo</groupId>
     <artifactId>java-classic-demo</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
     <name>Java-Classic-Demo</name>
 
-    <!-- 属性配置 -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <additionalparam>-Xdoclint:none</additionalparam>
         <maven.test.skip>true</maven.test.skip>
+
+        <asm.version>5.2</asm.version>
+        <byte-buddy.version>1.11.8</byte-buddy.version>
+        <cglib.version>3.3.0</cglib.version>
+        <javassist.version>3.27.0-GA</javassist.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.3.0</version>
-        </dependency>
+    <modules>
+        <module>file</module>
+        <module>jvm</module>
+        <module>pattern</module>
+        <module>proxy</module>
+        <module>schedule</module>
+        <module>thread</module>
+    </modules>
 
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.27.0-GA</version>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm-all</artifactId>
-            <version>5.2</version>
-        </dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <version>1.11.8</version>
-        </dependency>
-    </dependencies>
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm-all</artifactId>
+                <version>${asm.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${byte-buddy.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <repositories>
         <repository>
             <id>opensource</id>
-            <name>taocode nexus</name>
+            <name>nexus</name>
             <url>https://repo1.maven.org/maven2/</url>
             <layout>default</layout>
             <releases>
@@ -59,7 +73,6 @@
 
     <build>
         <plugins>
-            <!-- 解决IDEA自动重置LanguageLevel和JavaCompiler版本的问题 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

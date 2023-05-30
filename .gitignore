@@ -3,4 +3,4 @@
 .idea/
 *.iml
 # 忽略日志文件
-/target/
+target/

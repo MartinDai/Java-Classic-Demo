@@ -1,4 +1,4 @@
-package com.doodl6.demo.jvm;
+package com.doodl6.demo.jvm.oom;
 
 /**
  * 模拟java.lang.OutOfMemoryError: unable to create new native
