@@ -14,13 +14,15 @@
 
 ## jvm 
 
-模拟JVM运行时的一些错误场景
+1. 模拟JVM运行时的一些错误场景
 
-- 直接内存溢出（java.lang.OutOfMemoryError: Direct buffer memory）
-- 堆内存溢出（java.lang.OutOfMemoryError: Heap space）
-- Metaspace溢出（java.lang.OutOfMemoryError: Metaspace）
-- 线程资源耗尽溢出（java.lang.OutOfMemoryError: unable to create new native）
-- 线程栈溢出（java.lang.StackOverflowError）
+   - 直接内存溢出（java.lang.OutOfMemoryError: Direct buffer memory）
+   - 堆内存溢出（java.lang.OutOfMemoryError: Heap space）
+   - Metaspace溢出（java.lang.OutOfMemoryError: Metaspace）
+   - 线程资源耗尽溢出（java.lang.OutOfMemoryError: unable to create new native）
+   - 线程栈溢出（java.lang.StackOverflowError）
+
+2. 自定义ClassLoader示例
 
 ## pattern
 
